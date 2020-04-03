@@ -32,4 +32,43 @@ public class GoodsManager {
 		System.out.println("매니저동작");
 		return list;
 	} 
+	
+	public static int insertGoods(GoodsVo g) {
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("goods.insert", g);
+		session.commit();
+		session.close();
+		return re;
+	}
+	
+	public static int deleteGoods(GoodsVo g) {
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("goods.delete", g);
+		session.commit();
+		session.close();
+		return re;
+	}
+	
+	public static int updateGoods(GoodsVo g) {
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.update("goods.update", g);
+		session.commit();
+		session.close();
+		return re;
+	}
+	
+	public static GoodsVo detailGoods(int no) {
+		SqlSession session = factory.openSession();
+		GoodsVo g = session.selectOne("goods.detail", no);
+		session.close();
+		System.out.println("매니저동작");
+		return g;
+	}
+
+	
+	
+	
 }

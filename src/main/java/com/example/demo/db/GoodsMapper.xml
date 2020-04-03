@@ -22,4 +22,7 @@
    <update id="minusQty">
   	update goods set qty = qty - #{qty} where no=#{no}
   </update>
+  <select id="detail" resultType="GoodsVo">
+  	select * from goods where no=#{no}
+  </select>
 </mapper>

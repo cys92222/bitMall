@@ -15,5 +15,20 @@ public class Goodsdao {
 		return GoodsManager.listAll();
 	}
 	
+	public int insertGoods(GoodsVo g) {
+		return GoodsManager.insertGoods(g);
+	}
+	
+	public int updateGoods(GoodsVo g) {
+		return GoodsManager.updateGoods(g);
+	}
+	
+	public int deleteGoods(GoodsVo g) {
+		return GoodsManager.deleteGoods(g);
+	}
+	
+	public GoodsVo detailGoods(int no) {
+		return GoodsManager.detailGoods(no);
+	}
 	
 }
