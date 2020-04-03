@@ -8,10 +8,10 @@
 $(function(){
 	$("#btnAdd").click(function(){
 	 	var data = $("#f").serialize()
-		$.ajax("insert",{data:data,success:function(r){
+		$.ajax("insertGoods",{data:data,success:function(r){
 			alert(r);
 		}})
-		window.location.href="listEmp.html";
+		//window.location.href="listEmp.html";
 	})
 })
 </script>
@@ -30,19 +30,19 @@ $(function(){
               </div>
               <div class="form-control">
               <label for="price">상품가격</label>
-              <input type="number" id="price" name="price" placeholder="상품이름을 입력하세요.">
+              <input type="number" id="price" name="price" placeholder="상품가격을 입력하세요.">
               </div>
               <div class="form-control">
               <label for="qty">상품수량</label>
-              <input type="text" id="qty" name="qty" placeholder="상품이름을 입력하세요.">
+              <input type="text" id="qty" name="qty" placeholder="상품수량을 입력하세요.">
               </div>
               <div class="form-control">
               <label for="fname">상품사진</label>
-              <input type="text" id="fname" name="fname" placeholder="상품이름을 입력하세요.">
+              <input type="text" id="uploadFile" name="uploadFile" placeholder="상품사진을 입력하세요.">
               </div>
               <div class="form-control">
               <label for="fname">상품상세</label>
-              <input type="text" id="fname" name="fname" placeholder="상품이름을 입력하세요.">
+              <textarea cols="80" rows="10" id="detail"name="detail"></textarea>
               </div>
               <button type="button" id="btnAdd">등록</button>
         </form>

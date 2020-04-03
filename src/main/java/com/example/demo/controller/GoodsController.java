@@ -12,7 +12,6 @@ import com.example.demo.dao.Goodsdao;
 import com.example.demo.vo.GoodsVo;
 import com.google.gson.Gson;
 
-
 @RestController
 public class GoodsController {
 	
@@ -24,7 +23,7 @@ public class GoodsController {
 		this.dao = dao;
 	}
 
-	@RequestMapping("/listGoods.do")
+	@RequestMapping("/listGoods")
 	public ModelAndView listAll(String keyword, String searchcolumn){
 		ModelAndView mav = new ModelAndView();
 		if(keyword == null) {				
