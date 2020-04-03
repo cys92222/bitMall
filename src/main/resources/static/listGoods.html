@@ -6,7 +6,19 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	
+	var arr;
+	$.ajax("listGoods",function(data){
+		$.each(data,function(idx,g){
+			arr = idx
+			var ggg = data[idx].no;
+			$("#no").html(g.no);
+			$("#item").html(g.item);
+			$("#qty").html(g.qty);
+			$("#price").html(g.price);
+			$("#img").attr("src","img/"g.fname);
+			$("#detail").html(g.detail);
+		})
+	})
 })
 </script>
 </head>
@@ -14,7 +26,7 @@ $(function(){
 <h2>상품목록</h2>
 <hr>
 <form id="f">
-	<table>
+	<table border="1" width="80%">
 		<tr>
 			<td>상품번호</td><td>상품이름</td><td>상품수량</td><td>가격</td><td>사진</td><td>상세설명</td>
 		</tr>
@@ -24,11 +36,11 @@ $(function(){
 			<td> <input type="text" id="qty" name="qty"> </td>
 			<td> <input type="text" id="price" name="price"> </td>
 			<td> <input type="file" id="fname" name="fname"> </td>
-			<td> <img src="" id="img"> </td>
+			<td> <img src="" id="img"></td>
 			<td> <textarea rows="8" cols="10" id="detail" name="detail"></textarea> </td>
 		</tr>
 	</table>
 </form>
-<button>상품등록</button><button>상품삭제</button><button>상품수정</button><br>
+<button id="btnAdd">상품등록</button><button id="btnDel">상품삭제</button><button id="btnUp">상품수정</button><br>
 </body>
 </html>

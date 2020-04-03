@@ -11,6 +11,7 @@ import com.example.demo.vo.GoodsVo;
 public class Goodsdao {
 		
 	public List<GoodsVo> listGoods(){
+		System.out.println("다오 동작");
 		return GoodsManager.listAll();
 	}
 	

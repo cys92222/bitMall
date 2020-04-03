@@ -23,11 +23,12 @@ public class GoodsController {
 		this.dao = goodsdao;
 	}
 	@RequestMapping(value = "/listGoods" , produces ="application/json;charset=UTF-8")
-	public String listDept(HttpServletRequest request) {
+	public String listGoods() {
 		String str ="";
 		List<GoodsVo> list = dao.listGoods();
 		Gson gson = new Gson();
 		str = gson.toJson(list);
+		System.out.println("컨트롤러 동작");
 		return str;
 	}
 	

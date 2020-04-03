@@ -29,6 +29,7 @@ public class GoodsManager {
 		SqlSession session = factory.openSession();
 		List<GoodsVo> list = session.selectList("goods.listAll");
 		session.close();
+		System.out.println("매니저동작");
 		return list;
 	} 
 }
