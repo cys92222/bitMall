@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btnAdd").click(function(){
+	 	var data = $("#f").serialize()
+		$.ajax("insert",{data:data,success:function(r){
+			alert(r);
+		}})
+		window.location.href="listEmp.html";
+	})
+})
+</script>
+</head>
+<body>
+	<div class="container">
+        <form id="f" class="form">
+           <h2>상품 정보 등록</h2>
+           	  <div class="form-control">
+              <label for="no">상품번호</label>
+              <input type="number" id="no" name="no" placeholder="상품번호를 입력하세요.">
+              </div>
+              <div class="form-control">
+              <label for="item">상품이름</label>
+              <input type="text" id="item" name="item" placeholder="상품이름을 입력하세요.">
+              </div>
+              <div class="form-control">
+              <label for="price">상품가격</label>
+              <input type="number" id="price" name="price" placeholder="상품이름을 입력하세요.">
+              </div>
+              <div class="form-control">
+              <label for="qty">상품수량</label>
+              <input type="text" id="qty" name="qty" placeholder="상품이름을 입력하세요.">
+              </div>
+              <div class="form-control">
+              <label for="fname">상품사진</label>
+              <input type="text" id="fname" name="fname" placeholder="상품이름을 입력하세요.">
+              </div>
+              <div class="form-control">
+              <label for="fname">상품상세</label>
+              <input type="text" id="fname" name="fname" placeholder="상품이름을 입력하세요.">
+              </div>
+              <button type="button" id="btnAdd">등록</button>
+        </form>
+    </div>
+</body>
+</html>
