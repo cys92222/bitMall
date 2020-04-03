@@ -3,23 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#div1{
+	display: none;
+}
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	var arr;
-	$.ajax("listGoods",function(data){
-		alert("aa");
+	$.getJSON("listGoods",function(data){
 		$.each(data,function(idx,g){
 			arr = idx
-			alert(arr);
 			var ggg = data[idx].no;
-			$("#no").html(g.no);
-			$("#item").html(g.item);
-			$("#qty").html(g.qty);
-			$("#price").html(g.price);
-			$("#img").attr("src","img/"+g.fname);
-			$("#detail").html(g.detail);
+			var td1 = $("<td></td>").html(g.no);
+			var td2 = $("<td></td>").html(g.item);
+
+			
+			var tr = $("<tr id='tr_in'></tr>").append(td1,td2);
+			$("#tb1").append(tr);
 		})
+		
+		
+ 		$("#tr_in").on("click",)
 	})
 })
 </script>
@@ -28,10 +34,13 @@ $(function(){
 <h2>상품목록</h2>
 <hr>
 <form id="f">
-	<table border="1" width="80%">
+	<table id="tb1" border="1" width="80%">
 		<tr>
-			<td>상품번호</td><td>상품이름</td><td>상품수량</td><td>가격</td><td>사진</td><td>상세설명</td>
+			<td>상품번호</td><td>상품이름</td>
 		</tr>
+
+	</table>
+	<div id="div1">
 		<tr>
 			<td> <input type="text" id="no" name="no"> </td>
 			<td> <input type="text" id="item" name="item"> </td>
@@ -41,7 +50,7 @@ $(function(){
 			<td> <img src="" id="img"></td>
 			<td> <textarea rows="8" cols="10" id="detail" name="detail"></textarea> </td>
 		</tr>
-	</table>
+	</div>
 </form>
 <button id="btnAdd">상품등록</button><button id="btnDel">상품삭제</button><button id="btnUp">상품수정</button><br>
 </body>
