@@ -9,7 +9,7 @@ import com.example.demo.vo.GoodsVo;
 @Repository
 public class Goodsdao {
 		
-	public List<GoodsVo> listDept(){
+	public List<GoodsVo> listGoods(){
 		return GoodsManager.listAll();
 	}
 	

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.Goodsdao;
 import com.example.demo.vo.GoodsVo;
+import com.google.gson.Gson;
 
 
 @RestController
@@ -21,10 +22,10 @@ public class GoodsController {
 	public void setGoodsdao(Goodsdao goodsdao) {
 		this.dao = goodsdao;
 	}
-	@RequestMapping(value = "/listDept" , produces ="application/json;charset=UTF-8")
+	@RequestMapping(value = "/listGoods" , produces ="application/json;charset=UTF-8")
 	public String listDept(HttpServletRequest request) {
 		String str ="";
-		List<GoodsVo> list = dao.listDept();
+		List<GoodsVo> list = dao.listGoods();
 		Gson gson = new Gson();
 		str = gson.toJson(list);
 		return str;
