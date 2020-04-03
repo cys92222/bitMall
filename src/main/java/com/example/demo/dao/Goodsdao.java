@@ -1,6 +1,5 @@
 package com.example.demo.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -11,8 +10,9 @@ import com.example.demo.vo.GoodsVo;
 @Repository
 public class Goodsdao {
 		
-	public List<GoodsVo> listAll(HashMap map){ 
-		return GoodsManager.listAll(map);
+	public List<GoodsVo> listGoods(){
+		System.out.println("다오 동작");
+		return GoodsManager.listAll();
 	}
 	
 	public int insertGoods(GoodsVo g) {

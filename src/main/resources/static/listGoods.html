@@ -4,59 +4,107 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-#div1{
+#div1,#div2{
 	display: none;
+/* 	display: block */
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	var arr;
+	var idx;
 	$.getJSON("listGoods",function(data){
 		$.each(data,function(idx,g){
-			arr = idx
+			arr = data;
+			idx = idx;
 			var ggg = data[idx].no;
 			var td1 = $("<td></td>").html(g.no);
 			var td2 = $("<td></td>").html(g.item);
-
-			
-			var tr = $("<tr id='tr_in'></tr>").append(td1,td2);
+			var btndel = $("<button>삭제</button>");
+			var tr = $("<tr id='tr_in'></tr>").append(td1,td2,btndel);
 			$("#tb1").append(tr);
+			
+			//상품삭제
+			$(btndel).on("click",function(){
+				var in_no = {no:data[idx].no};
+				$.ajax("deleteGoods",{data:in_no,success:function(){
+					alert("상품삭제");
+					window.location.reload(true)
+
+				}})
+			})
+			
+			//상품클릭하면
+			$(td1).on("click",function(){
+	 			var in_no = {no:data[idx].no};
+	 			//alert(no);
+	 			$("#div1").css("display","block");
+	 			$("#div2").css("display","none");
+	 			$.ajax("getGoods",{data:in_no,success:function(r){
+	 				$("#no").val(r.no);
+	 				$("#item").val(r.item);
+	 				$("#qty").val(r.qty);
+	 				$("#price").val(r.price);
+	 				$("#img").attr({"src":"img/"+r.fname,"width":100,"height":100});
+	 				
+	 				$("#detail").val(r.detail);
+	 			}})
+	 		})
+	 		
+	 		
 		})
-		
-		
- 		$("#tr_in").on("click",)
 	})
+	
+	//상품등록
+	$("#btnAdd").click(function(){
+		$("#div2").css("display","block");
+		$("#div1").css("display","none");
+	});
+	
+	
+	
+	
 })
 </script>
 </head>
 <body>
-<h2>상품정보</h2>
-	<form action="listGoods.do">
-	<select name="searchcolumn">
-		<option value="no">번호</option>
-		<option value="item">상품명</option>
-	</select>
-	
-	<input type="text" name="keyword">
-	<input type="submit" value="검색">
-	</form>
-	
-	<table border="1" width="80%">
+<h2>상품목록</h2>
+<hr>
+
+	<table id="tb1" border="1" width="80%">
 		<tr>
-				<td>번호</td>
-				<td>상품명</td>
-				
+			<td>상품번호</td><td>상품이름</td>
 		</tr>
 
-		<c:forEach var="g" items="${listAll }">
-		
-			<tr>
-				<td><a href="detailGoods.do?no=${g.no }">${g.no }</a></td>   
-				<td>${g.item }</td>
-			</tr>
-		</c:forEach>
 	</table>
-	<a href="insertGoods.do">등록</a>
+	<!-- 수정폼 -->
+<div id="div1">
+<form id="f_up">
+	<table border="1">
+		<tr>
+			<td>상품번호</td><td>상품이름</td><td>상품수량</td><td>상품가격</td><td>사진</td><td>상세설명</td>
+		</tr>
+		<tr>
+			<td> <input type="text" id="no" name="no"> </td>
+			<td> <input type="text" id="item" name="item"> </td>
+			<td> <input type="text" id="qty" name="qty"> </td>
+			<td> <input type="text" id="price" name="price"> </td>
+			<td> <img src="" id="img"></td>
+			<td> <textarea rows="8" cols="10" id="detail" name="detail"></textarea> </td>
+			<td> <button type="button" id="btnDel">상품삭제</button> </td>
+		</tr>
+	</table>	
+	</div>
+</form>
+
+
+<!-- 등록폼 -->
+<div id="div2">
+
+	
+</div>
+
+<button id="btnAdd">상품등록</button><button id="btnUp">상품수정</button><br>
 </body>
 </html>
