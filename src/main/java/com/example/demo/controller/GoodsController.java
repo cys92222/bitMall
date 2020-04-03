@@ -19,9 +19,11 @@ public class GoodsController {
 	@Autowired
 	private Goodsdao dao;
 
-	public void setGoodsdao(Goodsdao goodsdao) {
-		this.dao = goodsdao;
+
+	public void setDao(Goodsdao dao) {
+		this.dao = dao;
 	}
+
 	@RequestMapping(value = "/listGoods" , produces ="application/json;charset=UTF-8")
 	public String listGoods() {
 		String str ="";

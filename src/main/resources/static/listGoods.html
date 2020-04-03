@@ -8,14 +8,16 @@
 $(function(){
 	var arr;
 	$.ajax("listGoods",function(data){
+		alert("aa");
 		$.each(data,function(idx,g){
 			arr = idx
+			alert(arr);
 			var ggg = data[idx].no;
 			$("#no").html(g.no);
 			$("#item").html(g.item);
 			$("#qty").html(g.qty);
 			$("#price").html(g.price);
-			$("#img").attr("src","img/"g.fname);
+			$("#img").attr("src","img/"+g.fname);
 			$("#detail").html(g.detail);
 		})
 	})
