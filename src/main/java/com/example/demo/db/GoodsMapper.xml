@@ -17,9 +17,9 @@
   	delete goods where no=#{no}
   </delete>
   <update id="plusQty">
-  	update goods set qty=qty + #{qty} where no=#{no}
+  	update goods set qty = qty + #{qty} where no=#{no}
   </update>
    <update id="minusQty">
-  	update goods set qty=qty - #{qty} where no=#{no}
+  	update goods set qty = qty - #{qty} where no=#{no}
   </update>
 </mapper>
