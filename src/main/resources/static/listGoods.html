@@ -70,7 +70,14 @@ $(function(){
 			})
 		})
 		
-	
+	//상품수정
+	$("#btnUp").click(function(){
+		var in_data = $("#f_up").serialize();
+		$.ajax("updateGoods",{data:in_data,success:function(){
+			alert("상품수정");
+		}})
+		window.location.reload(true)
+	})
 	
 	
 	
@@ -87,7 +94,7 @@ $(function(){
 		</tr>
 
 	</table>
-	<!-- 수정폼 -->
+	<!-- 상세보기폼 -->
 <div id="div1">
 <form id="f_up">
 	<table border="1">
@@ -102,7 +109,7 @@ $(function(){
 			<td> <img src="" id="img"></td>
 			<td> <textarea rows="8" cols="10" id="detail" name="detail"></textarea> </td>
 		</tr>
-	</table>	
+	</table>
 	</div>
 </form>
 
