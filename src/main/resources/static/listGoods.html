@@ -31,27 +31,32 @@ $(function(){
 </script>
 </head>
 <body>
-<h2>상품목록</h2>
-<hr>
-<form id="f">
-	<table id="tb1" border="1" width="80%">
+<h2>상품정보</h2>
+	<form action="listGoods.do">
+	<select name="searchcolumn">
+		<option value="no">번호</option>
+		<option value="item">상품명</option>
+	</select>
+	
+	<input type="text" name="keyword">
+	<input type="submit" value="검색">
+	</form>
+	
+	<table border="1" width="80%">
 		<tr>
-			<td>상품번호</td><td>상품이름</td>
+				<td>번호</td>
+				<td>상품명</td>
+				
 		</tr>
 
+		<c:forEach var="g" items="${listAll }">
+		
+			<tr>
+				<td><a href="detailGoods.do?no=${g.no }">${g.no }</a></td>   
+				<td>${g.item }</td>
+			</tr>
+		</c:forEach>
 	</table>
-	<div id="div1">
-		<tr>
-			<td> <input type="text" id="no" name="no"> </td>
-			<td> <input type="text" id="item" name="item"> </td>
-			<td> <input type="text" id="qty" name="qty"> </td>
-			<td> <input type="text" id="price" name="price"> </td>
-			<td> <input type="file" id="fname" name="fname"> </td>
-			<td> <img src="" id="img"></td>
-			<td> <textarea rows="8" cols="10" id="detail" name="detail"></textarea> </td>
-		</tr>
-	</div>
-</form>
-<button id="btnAdd">상품등록</button><button id="btnDel">상품삭제</button><button id="btnUp">상품수정</button><br>
+	<a href="insertGoods.do">등록</a>
 </body>
 </html>

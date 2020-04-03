@@ -1,6 +1,7 @@
 package com.example.demo.db;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -25,13 +26,13 @@ public class GoodsManager {
 		}
 	}
 	
-	public static List<GoodsVo> listAll(){
+	public static List<GoodsVo> listAll(HashMap map){	
 		SqlSession session = factory.openSession();
-		List<GoodsVo> list = session.selectList("goods.listAll");
+		List<GoodsVo> listAll = session.selectList("goods.listAll", map);
+		System.out.println(listAll);
 		session.close();
-		System.out.println("매니저동작");
-		return list;
-	} 
+		return listAll;
+	}
 	
 	public static int insertGoods(GoodsVo g) {
 		int re = -1;

@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.Goodsdao;
 import com.example.demo.vo.GoodsVo;
@@ -22,14 +24,23 @@ public class GoodsController {
 		this.dao = dao;
 	}
 
-	@RequestMapping(value = "/listGoods" , produces ="application/json;charset=UTF-8")
-	public String listGoods() {
-		String str ="";
-		List<GoodsVo> list = dao.listGoods();
-		Gson gson = new Gson();
-		str = gson.toJson(list);
-		System.out.println("컨트롤러 동작");
-		return str;
+	@RequestMapping("/listGoods.do")
+	public ModelAndView listAll(String keyword, String searchcolumn){
+		ModelAndView mav = new ModelAndView();
+		if(keyword == null) {				
+			keyword = "";
+		}
+		if(searchcolumn == null) { 			
+			searchcolumn ="";
+		}
+		HashMap map = new HashMap();	
+		map.put("searchcolumn",searchcolumn);
+		map.put("keyword", keyword);
+		List<GoodsVo> listAll = dao.listAll(map);
+		System.out.println(listAll);
+		mav.addObject("listAll",listAll);
+		mav.setViewName("listGoods");
+		return mav;
 	}
 	
 	// 상품등록

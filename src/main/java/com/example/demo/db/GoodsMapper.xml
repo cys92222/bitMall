@@ -3,8 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="goods">
-  <select id="listAll" resultType="GoodsVo">
-    select * from goods
+  <select id="listAll" resultType="goodsVo">
+  select * from goods 
+  <if test="keyword != null and keyword != ''">
+  	where ${searchcolumn} like '%' || #{keyword} ||'%'			
+  </if> 													
   </select>
   <insert id="insert">
 	insert into goods values(#{no}, #{item}, #{qty}, #{price}, #{fname}, #{detail})
