@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.db.GoodsManager;
 import com.example.demo.vo.GoodsVo;
+
 @Repository
 public class Goodsdao {
 		
