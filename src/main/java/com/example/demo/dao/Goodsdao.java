@@ -1,8 +1,17 @@
 package com.example.demo.dao;
 
-public class Goodsdao {
-	public void list() {
-		System.out.println("리스트입니다");
-	}
+import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.db.GoodsManager;
+import com.example.demo.vo.GoodsVo;
+@Repository
+public class Goodsdao {
+		
+	public List<GoodsVo> listDept(){
+		return GoodsManager.listAll();
+	}
+	
+	
 }

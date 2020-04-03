@@ -1,5 +1,33 @@
 package com.example.demo.controller;
 
-public class GoodsController {
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.dao.Goodsdao;
+import com.example.demo.vo.GoodsVo;
+
+
+@RestController
+public class GoodsController {
+	
+	@Autowired
+	private Goodsdao dao;
+
+	public void setGoodsdao(Goodsdao goodsdao) {
+		this.dao = goodsdao;
+	}
+	@RequestMapping(value = "/listDept" , produces ="application/json;charset=UTF-8")
+	public String listDept(HttpServletRequest request) {
+		String str ="";
+		List<GoodsVo> list = dao.listDept();
+		Gson gson = new Gson();
+		str = gson.toJson(list);
+		return str;
+	}
+	
 }
